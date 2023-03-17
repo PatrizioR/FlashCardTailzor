@@ -1,0 +1,57 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/"
+@using FlashCardTailzor.Data.Store.State;
+@*<LoadingComponent></LoadingComponent>*@
+
+<div class="flex flex-wrap min-h-screen content-start justify-center bg-slate-100">
+    <div class="m-1">
+        <MemoryCardComponent Active="@Active[0]" OnCardFlip="@(() =>Flip(0))">
+            <div class="h-full w-full bg-red-200"></div>
+        </MemoryCardComponent>
+    </div>
+    <div class="m-1">
+        <MemoryCardComponent Active="@Active[1]" OnCardFlip="@(() =>Flip(1))">
+            <div class="h-full w-full bg-green-200"></div>
+        </MemoryCardComponent>
+    </div>
+    <div class="m-1">
+        <MemoryCardComponent Active="@Active[2]" OnCardFlip="@(() =>Flip(2))">
+            <div class="h-full w-full bg-red-200"></div>
+        </MemoryCardComponent>
+    </div>
+    <div class="m-1">
+        <MemoryCardComponent Active="@Active[3]" OnCardFlip="@(() =>Flip(3))">
+            <div class="h-full w-full bg-blue-200"></div>
+        </MemoryCardComponent>
+    </div>
+    <div class="m-1">
+        <MemoryCardComponent Active="@Active[4]" OnCardFlip="@(() =>Flip(4))">
+            <div class="h-full w-full bg-green-200"></div>
+        </MemoryCardComponent>
+    </div>
+    <div class="m-1">
+        <MemoryCardComponent Active="@Active[5]" OnCardFlip="@(() =>Flip(5))">
+            <div class="h-full w-full bg-yellow-200"></div>
+        </MemoryCardComponent>
+    </div>
+    <div class="m-1">
+        <MemoryCardComponent Active="@Active[6]" OnCardFlip="@(() =>Flip(6))">
+            <div class="h-full w-full bg-blue-200"></div>
+        </MemoryCardComponent>
+    </div>
+    <div class="m-1">
+        <MemoryCardComponent Active="@Active[7]" OnCardFlip="@(() =>Flip(7))">
+            <div class="h-full w-full bg-yellow-200"></div>
+        </MemoryCardComponent>
+    </div>
+</div>
+
+@code {
+    public bool[] Active { get; set; } = Enumerable.Range(0, 8).ToList().Select((item) => false).ToArray();
+    public void Flip(int index)
+    {
+        Active[index] = !Active[index];
+        this.StateHasChanged();
+    }
+}

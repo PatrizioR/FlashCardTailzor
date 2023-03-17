@@ -1,0 +1,51 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<div class="group h-@Size w-@Size [perspective:1000px]">
+    <div class="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] @GroupClass">
+        <div class="absolute inset-0">
+
+            <div class="p-2 h-full w-full rounded-xl object-cover shadow-xl shadow-black/40 transform -scale-x-100">
+                @ChildContent
+                <button class="absolute top-3 right-3 text-lg font-bold text-white-600 p-2 rounded-full bg-gray-100 hover:bg-gray-300" @onclick="() => {}">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        </div>
+        <div @onclick="@(() => FlipCard())" class="absolute inset-0 h-full w-full rounded-xl bg-white [transform-rotateY(180deg)] [backface-visibility:hidden] px-12 text-center text-slate-200">
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public int Size { get; set; } = 32;
+
+    [Parameter]
+    public bool Active { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnCardFlip{ get; set; }
+
+    public string GroupClass
+    {
+        get
+        {
+            if (Active)
+            {
+                return "group-hover:[transform:rotateY(180deg)] [transform:rotateY(180deg)]";
+            }
+            else
+            {
+                return "group-active:[transform:rotateY(180deg)]";
+            }
+        }
+    }
+
+    public void FlipCard()
+    {
+        this.OnCardFlip.InvokeAsync(!Active);
+    }
+}

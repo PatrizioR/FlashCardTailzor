@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fluxor.Blazor.Web" Version="5.7.0" />
+    <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="5.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Store\Features\MemoryCards\Actions\" />
+    <Folder Include="Store\Features\MemoryCards\Effects\" />
+    <Folder Include="Store\Features\MemoryCards\Reducers\" />
+  </ItemGroup>
+
+</Project>
